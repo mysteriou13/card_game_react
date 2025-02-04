@@ -1,6 +1,8 @@
-export interface CarteType {
+    export interface CarteType {
     famille_aleatoire: string;
     valeur_aleatoire: string;
+    nb_carte:number;
+    icone:string;
     img: string;
   }
   
@@ -11,16 +13,18 @@ export interface CarteType {
     let carte: number = Math.floor(Math.random() * valeurs.length); // Nombre aléatoire entre 0 et 12
     let famille_aleatoire: string = familles[Math.floor(Math.random() * familles.length)];
     let valeur_aleatoire: string = valeurs[carte];
-  
+    let icone:string;      
     let imgcarte: string;
-  
+    let nb_carte:number;
+    nb_carte = 6;
        
-    if (carte <=10) {
+    if (carte <= 9 ) {
+      
       imgcarte = famille_aleatoire; // Image basée sur la famille
     } 
-    if(carte >=11){
-        imgcarte = valeur_aleatoire;
-    }
+
+
+    icone =  `/img/${famille_aleatoire}.png`;
   
     // Génération de l'image correcte
     let img: string = `/img/${imgcarte}.png`;
@@ -28,7 +32,9 @@ export interface CarteType {
     return {
       famille_aleatoire,
       valeur_aleatoire,
-      img
+      nb_carte,
+      icone,
+      img,
     };
   }
   

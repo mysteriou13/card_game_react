@@ -1,7 +1,7 @@
 import PageLayout from "./components/Layouts/pageLayout";
 import Carte from "./components/Carte";
  import "./page.css"
-import genere_card, { CarteType } from "./function/genere_card"; // Import de la fonction et du type
+import genere_card from "./function/genere_card"; // Import de la fonction et du type
 
 // Le type CarteType pour décrire la structure de chaque carte
 export default function Page() {
