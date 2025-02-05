@@ -5,8 +5,7 @@
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    
     justify-content: space-between;
     padding: 10px;
     text-align: center;
@@ -19,7 +18,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);  /* 3 cartes par ligne */
      position: relative;
-     top:8%;
+     top:12%;
   }
   
   .div_img_card {
@@ -28,7 +27,7 @@
   }
   
   .img_card {
-    width: 100%;
+    width: 73%;
     height: auto;
   }
   
@@ -53,6 +52,12 @@
   .One_image_card{
 
     position: relative;
-    top: 27%;
+    top: 19%;
+
+  }
+
+  .img_icone_top{
+
+    width: 19%;
 
   }
