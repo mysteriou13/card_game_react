@@ -2,7 +2,7 @@
     famille_aleatoire: string;
     valeur_aleatoire: string;
     nb_carte:number;
-    icone:string;
+    icone_carte:string;
     img: string;
   }
   
@@ -13,7 +13,7 @@
     let carte: number = Math.floor(Math.random() * valeurs.length); // Nombre aléatoire entre 0 et 12
     let famille_aleatoire: string = familles[Math.floor(Math.random() * familles.length)];
     let valeur_aleatoire: string = valeurs[carte];
-    let icone:string;      
+    let icone_carte:string;      
     let imgcarte: string;
     let nb_carte:number;
     nb_carte = 6;
@@ -21,10 +21,13 @@
     if (carte <= 9 ) {
       
       imgcarte = famille_aleatoire; // Image basée sur la famille
-    } 
+    }
+     if(carte >=  10){
+      imgcarte = valeur_aleatoire;
+     }
+    
 
-
-    icone =  `/img/${famille_aleatoire}.png`;
+    icone_carte =  `/img/${famille_aleatoire}.png`;
   
     // Génération de l'image correcte
     let img: string = `/img/${imgcarte}.png`;
@@ -33,7 +36,7 @@
       famille_aleatoire,
       valeur_aleatoire,
       nb_carte,
-      icone,
+      icone_carte,
       img,
     };
   }

@@ -8,7 +8,7 @@ export default function Page() {
   let tab_card = []; // Déclaration d'un tableau d'objets CarteType
 
   // Initialisation correcte de la variable 'a'
-  for (let a = 0; a <= 3; a++) {
+  for (let a = 0; a !== 4; a++) {
     let carte = genere_card(); // Génération de la carte
     tab_card.push(carte); // Ajout de la carte dans le tableau
   }

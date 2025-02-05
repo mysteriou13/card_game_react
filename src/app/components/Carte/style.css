@@ -1,23 +1,58 @@
-.Card{
-    width: 15vw;
-}
-
-.img_card{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-
-.div_img_card{
-    width: 43%;
-
-
-}
-
-
-.box_card_img{
+.Card {
+    width: 200px;  /* Ajuste la taille des cartes */
+    height: 300px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-wrap: wrap;
-    gap: 10%;
-}
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    border: 2px solid black;
+    position: relative;
+  }
+  
+  .box_card_img {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 cartes par ligne */
+     position: relative;
+     top:8%;
+  }
+  
+  .div_img_card {
+    width: 60px; /* Ajuster la taille des images */
+    height: 100%s;
+  }
+  
+  .img_card {
+    width: 100%;
+    height: auto;
+  }
+  
+  .top-left,
+  .bottom-right {
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .top-left {
+    top: 5px;
+    left: 5px;
+  }
+  
+  .bottom-right {
+    bottom: 5px;
+    right: 5px;
+  
+  }
+
+  .One_image_card{
+
+    position: relative;
+    top: 27%;
+
+  }
