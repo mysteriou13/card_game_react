@@ -18,9 +18,57 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);  /* 3 cartes par ligne */
      position: relative;
-     top:12%;
+     top:19%;
   }
   
+  .box_card_img_2{
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);  /* 3 cartes par ligne */
+     position: relative;
+     left: 24%;
+     top: 19%;
+
+  }
+
+
+  .box_card_img_3{
+
+            display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        position: relative;
+        top: 17%;
+        left: 10%;
+        width: 100%;
+
+  }
+  
+  .box_card_img_4{
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        position: relative;
+        top: 19%;
+        left: 10%;
+        width: 100%;
+  
+
+  }
+
+
+  .box_card_img_10{
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: relative;
+    top: 12%;
+    
+    width: 100%;
+
+
+}
+
+
   .div_img_card {
     width: 60px; /* Ajuster la taille des images */
     height: 100%s;
@@ -61,3 +109,5 @@
     width: 19%;
 
   }
+
+  

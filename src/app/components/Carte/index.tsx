@@ -23,7 +23,9 @@ export default function Carte({ data }: CarteProps) {
 
   let img_card:string;
 
-   let box_card:string
+  let box_card:string;
+
+
 
   if (verif_type_carte) {
     // Si la valeur est une lettre, ajouter l'image une fois
@@ -33,6 +35,15 @@ export default function Carte({ data }: CarteProps) {
   }else{
     box_card = "box_card_img";
     img_card = "div_img_card";
+
+    if(nombreImages >= 2 && nombreImages <=4 || nombreImages == 10){
+
+     box_card = "box_card_img_"+nombreImages;    
+
+    }else{
+      box_card = "box_card_img";
+    }
+   
   }
 
   return (
