@@ -8,7 +8,7 @@
     
     justify-content: space-between;
     padding: 10px;
-    text-align: center;
+   
     font-family: "Arial", sans-serif;
     border: 2px solid black;
     position: relative;
@@ -18,7 +18,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);  /* 3 cartes par ligne */
      position: relative;
-     top:19%;
+     top:12%;
   }
   
   .box_card_img_2{
@@ -26,8 +26,8 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);  /* 3 cartes par ligne */
      position: relative;
-     left: 24%;
-     top: 19%;
+     left: 37%;
+     top: 16%;
 
   }
 
@@ -94,6 +94,7 @@
   .bottom-right {
     bottom: 5px;
     right: 5px;
+    left: 91%;
   
   }
 
@@ -106,8 +107,19 @@
 
   .img_icone_top{
 
-    width: 19%;
+    width: 9%;
 
   }
 
+
+  .img_icone_bottom{
+
+    width: 100%;
+
+  }
   
+  .img_card_figure{
+
+    width: 91%;
+
+  }

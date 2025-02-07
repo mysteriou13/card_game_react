@@ -21,20 +21,24 @@ export default function Carte({ data }: CarteProps) {
   // Vérifier si la valeur est une lettre (A-Z)
   let verif_type_carte = /^[a-zA-Z]$/.test(data.valeur_aleatoire);
 
+  let div_img_card:string;
+
   let img_card:string;
 
   let box_card:string;
 
+  img_card = "img_card";
 
 
   if (verif_type_carte) {
     // Si la valeur est une lettre, ajouter l'image une fois
     imagesArray = [data.img];
-    img_card = "One_image_card"
+    div_img_card = "One_image_card"
+    img_card = "img_card_figure"
     box_card = null;
   }else{
     box_card = "box_card_img";
-    img_card = "div_img_card";
+    div_img_card = "div_img_card";
 
     if(nombreImages >= 2 && nombreImages <=4 || nombreImages == 10){
 
@@ -43,6 +47,7 @@ export default function Carte({ data }: CarteProps) {
     }else{
       box_card = "box_card_img";
     }
+
    
   }
 
@@ -54,9 +59,18 @@ export default function Carte({ data }: CarteProps) {
          <div>
         
          <div>
-          
-          {data.valeur_aleatoire} <img src = {data.icone_carte} className="img_icone_top"/>
-          
+            <div>
+            <p>
+                {data.valeur_aleatoire}
+            </p>
+        </div>
+
+          <div>
+            <p>
+              <img src = {data.icone_carte} className="img_icone_top"/>
+           </p>
+           </div>
+
           </div>
         
         </div>
@@ -70,8 +84,8 @@ export default function Carte({ data }: CarteProps) {
   
        <div className={box_card}>
        {imagesArray.map((imgSrc, index) => (
-         <div key={index} className={img_card}>
-           <img className="img_card" src={imgSrc} alt={`Carte ${index + 1}`} />
+         <div key={index} className={div_img_card}>
+           <img className={img_card} src={imgSrc} alt={`Carte ${index + 1}`} />
          </div>
        ))}
      </div>
@@ -81,7 +95,15 @@ export default function Carte({ data }: CarteProps) {
 
 
       {/* Affichage de la valeur en bas à droite */}
-      <div className="bottom-right">{data.valeur_aleatoire}</div>
+      <div className="bottom-right">
+        <p>
+        {data.valeur_aleatoire}
+        </p>
+        <p>
+        <img src = {data.icone_carte} className="img_icone_bottom"/>
+        </p>
+        </div>
+
     </div>
   </>
   );
