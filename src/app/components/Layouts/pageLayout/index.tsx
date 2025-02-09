@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
+import Header from "../../Header";
 
 export default function PageLayout({ children }) {
   return (
     <div>
-      <header>Mon Header</header>
+      <Header/>
       <main>{children}</main>
       <footer>Mon Footer</footer>
     </div>

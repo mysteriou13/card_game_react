@@ -1,8 +1,8 @@
     export interface CarteType {
     famille_aleatoire: string;
     valeur_aleatoire: string;
-    nb_carte:number;
     icone_carte:string;
+    datacarte:any;
     img: string;
   }
   
@@ -15,8 +15,9 @@
     let valeur_aleatoire: string = valeurs[carte];
     let icone_carte:string;      
     let imgcarte: string;
-    let nb_carte:number;
-    nb_carte = 6;
+    let  datacarte:any;
+    
+   
        
     if (carte <= 9 ) {
       
@@ -26,7 +27,8 @@
       imgcarte = valeur_aleatoire;
      }
     
-
+    datacarte = famille_aleatoire+valeur_aleatoire;
+    
     icone_carte =  `/img/${famille_aleatoire}.png`;
   
     // Génération de l'image correcte
@@ -35,7 +37,7 @@
     return {
       famille_aleatoire,
       valeur_aleatoire,
-      nb_carte,
+      datacarte,
       icone_carte,
       img,
     };
