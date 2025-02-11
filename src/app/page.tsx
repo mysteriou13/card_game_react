@@ -7,16 +7,16 @@ import "./page.css";
 import genere_card from "./function/genere_card";
 
 function Page() {
-  const { tab, addToTab } = useCarte();
+  const { tabuser, addToTab } = useCarte();
   const effectRan = useRef(false); // Ref to track if effect has run
 
   useEffect(() => {
-    if (!effectRan.current) {
-      // Générer des cartes et les ajouter au contexte
-      for (let a = 0; a <= 3; a++) {
+
+      // Add cards until there are exactly 4 cards
+      for (let a: number = 0; a < 4; a++) {
         const carte = genere_card();
         
-        // Ajouter l'objet carte avec les propriétés nécessaires dans le contexte
+        // Adding the card to the state only if it's unique
         addToTab({
           famille_aleatoire: carte.famille_aleatoire,
           valeur_aleatoire: carte.valeur_aleatoire,
@@ -24,20 +24,16 @@ function Page() {
           img: carte.img
         });
       }
-      effectRan.current = true; // Marquer que l'effet a été exécuté
-    }
-  }, [addToTab]); // L'effet ne s'exécute qu'une seule fois
+      effectRan.current = true; // Mark that the effect has run
+    
+  }, [addToTab]); // Run the effect only once
 
   return (
     <PageLayout>
-      <div className="box_card">
-     
-    </div>
       <p>The Card Game</p>
       <div className="box_card">
-        {/* Affichage des cartes */}
-        
-        {tab.map((carte, index) => (
+        {/* Rendering cards */}
+        {tabuser.map((carte, index) => (
           <Carte
             key={index}
             data={{
