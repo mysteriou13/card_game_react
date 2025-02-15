@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect, useRef } from "react";
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { store } from './redux/store'; // Importez votre store Redux
-import { addMultipleItems } from "./redux/splice/testsplice"; // Importez l'action Redux
+import { store } from './redux/store';
+import { addMultipleItems } from "./redux/splice/testsplice";
 import PageLayout from "./components/Layouts/pageLayout";
 import Carte from "./components/Carte";
 
@@ -10,44 +10,43 @@ import "./page.css";
 import genere_card from "./function/genere_card";
 
 function Page() {
-  const dispatch = useDispatch(); // Assurez-vous que `dispatch` est bien défini ici
-  const tabuser = useSelector((state: any) => state.test.tabuser); // Utilisation de `useSelector` pour récupérer les cartes du store
-  const effectRan = useRef(false); // Ref to track if effect has run
+  const dispatch = useDispatch();
+  const tabuser = useSelector((state: any) => state.test.tabuser);
+  const effectRan = useRef(false);
 
   useEffect(() => {
     if (!effectRan.current) {
-      // Générer des cartes
-      const newCards = [];
-      for (let a: number = 0; a < 4; a++) {
-        const newcarte = genere_card();
-        const found = newCards.find((carte:any) => carte.famille_aleatoire == newcarte.famille_aleatoire &&
-       carte.valeur_aleatoire == newcarte.valeur_aleatoire);
+      let newCards = [];
 
-         if(!found){
-        newCards.push(newcarte);
-         }
-         
+      while (newCards.length < 4) {
+        const newcarte = genere_card();
+
+        // Vérifier si la carte existe déjà dans `tabuser` ou `newCards`
+        const exists = [tabuser, newCards].find(
+          (carte: any) =>
+            carte.famille_aleatoire === newcarte.famille_aleatoire &&
+            carte.valeur_aleatoire === newcarte.valeur_aleatoire
+        );
+
+        if (!exists) {
+          newCards.push(newcarte);
+        }
       }
-  
-      // Si on a moins de 4 cartes, on peut ajouter des cartes manquantes ici (en cas d'erreur dans la génération)
-      if (newCards.length === 4) {
-        // Dispatch des cartes générées à Redux
-        dispatch(addMultipleItems(newCards)); // Envoi des cartes à Redux
-      } else {
-        console.error("Erreur : il manque des cartes dans newCards");
+
+      // Dispatch uniquement si des nouvelles cartes sont générées
+      if (newCards.length > 0) {
+        dispatch(addMultipleItems(newCards));
       }
-  
-      effectRan.current = true; // Marquer que l'effet a été exécuté
+
+      effectRan.current = true; // Empêche l'exécution multiple
     }
-  }, [dispatch]); // L'effet se déclenche une seule fois (lors du montage)
-  
+  }, [dispatch, tabuser]); // Exécute une seule fois au montage
 
   return (
     <PageLayout>
       <p>The Card Game</p>
       <div className="box_card">
-        {/* Rendering des cartes */}
-        {tabuser.map((carte: { famille_aleatoire: string; valeur_aleatoire: string; icone_carte: string; img: string; }, index: React.Key) => (
+        {tabuser.map((carte: any, index: number) => (
           <Carte
             key={index}
             data={{
