@@ -11,11 +11,13 @@ interface Carte {
 /* Définition du type pour l'état initial */
 interface TestState {
     tabuser: Carte[];
+    tabcreate:Carte[];
 }
 
 /* État initial correctement typé */
 const initialState: TestState = {
     tabuser: [],
+    tabcreate:[],
 };
 
 /* Création du slice Redux */
@@ -23,10 +25,31 @@ export const testSlice = createSlice({
     name: "test",
     initialState,
     reducers: {
-        // Réinitialiser le tableau et ajouter de nouvelles cartes
         addMultipleItems: (state, action: PayloadAction<Carte[]>) => {
-            state.tabuser = action.payload; // Remplace l'ancien tableau par le nouveau
+            // Remplace complètement tabuser par les nouvelles cartes
+            state.tabuser = [...action.payload];
+        
+            // Vérifier les doublons avant d'ajouter les nouvelles cartes à tabcreate
+            const newTabCreate = [...state.tabcreate]; // Copie de tabcreate pour éviter la mutation directe
+        
+            state.tabuser.forEach((newCard) => {
+                const exists = state.tabcreate.some(
+                    (oldCard) =>
+                        oldCard.famille_aleatoire === newCard.famille_aleatoire &&
+                        oldCard.valeur_aleatoire === newCard.valeur_aleatoire
+                );
+        
+                // Ajouter la carte uniquement si elle n'existe pas déjà
+                if (!exists) {
+                    newTabCreate.push(newCard);
+                }
+            });
+        
+            // Mettre à jour tabcreate avec la nouvelle liste sans doublons
+              
+            state.tabcreate = newTabCreate;
         }
+        
     },
 });
 
