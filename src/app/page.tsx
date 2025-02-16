@@ -1,50 +1,48 @@
 'use client';
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { store } from './redux/store';
-import { addMultipleItems } from "./redux/splice/testsplice";
 import PageLayout from "./components/Layouts/pageLayout";
 import Carte from "./components/Carte";
-
+import { addMultipleItems } from "./redux/splice/testsplice";
 import "./page.css";
-import genere_card from "./function/genere_card";
+import genere_datacard from "./function/genere_datacard";
 
 function Page() {
   const dispatch = useDispatch();
   const tabuser = useSelector((state: any) => state.test.tabuser);
-  const effectRan = useRef(false);
+  const [nbtour, setNbtour] = useState(0);
 
-  useEffect(() => {
-    if (!effectRan.current) {
-      let newCards = [];
+  function next() {
+    setNbtour(prev => prev + 1); // Incrémente le tour
 
-      while (newCards.length < 4) {
-        const newcarte = genere_card();
+    let newCards = [];
 
-        // Vérifier si la carte existe déjà dans `tabuser` ou `newCards`
-        const exists = [tabuser, newCards].find(
-          (carte: any) =>
-            carte.famille_aleatoire === newcarte.famille_aleatoire &&
-            carte.valeur_aleatoire === newcarte.valeur_aleatoire
-        );
+    // Générer 4 cartes uniques
+    while (newCards.length < 4) {
+      const newcarte = genere_datacard();
 
-        if (!exists) {
-          newCards.push(newcarte);
-        }
+      // Vérifie si la carte existe déjà dans newCards
+      const exists = newCards.find(
+        (carte: any) =>
+          carte.famille_aleatoire === newcarte.famille_aleatoire &&
+          carte.valeur_aleatoire === newcarte.valeur_aleatoire
+      );
+
+      if (!exists) {
+        newCards.push(newcarte);
       }
-
-      // Dispatch uniquement si des nouvelles cartes sont générées
-      if (newCards.length > 0) {
-        dispatch(addMultipleItems(newCards));
-      }
-
-      effectRan.current = true; // Empêche l'exécution multiple
     }
-  }, [dispatch, tabuser]); // Exécute une seule fois au montage
+
+    // Met à jour Redux en remplaçant complètement `tabuser`
+    dispatch(addMultipleItems(newCards));
+  }
 
   return (
+    
     <PageLayout>
-      <p>The Card Game</p>
+       <input type="button" value="Suivant" onClick={next} />
+      <p>The Card Game (Tour {nbtour})</p>
       <div className="box_card">
         {tabuser.map((carte: any, index: number) => (
           <Carte
@@ -58,6 +56,7 @@ function Page() {
           />
         ))}
       </div>
+     
     </PageLayout>
   );
 }
