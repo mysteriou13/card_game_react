@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { store } from './redux/store';
 import PageLayout from "./components/Layouts/pageLayout";
@@ -15,6 +15,7 @@ function Page() {
 
   const [nbtour, setNbtour] = useState(0);
 
+/*fonction changement de carte*/
   function next() {
     // Vérifie qu'on n'a pas atteint 51 cartes
     if (tabcreate.length !== 51) {
@@ -23,23 +24,31 @@ function Page() {
       let newCards: any[] = [];
 
       // Générer 4 cartes uniques
-      while (newCards.length < 4) {
+      while (newCards.length < 2) {
         const newcarte = genere_datacard();
 
-        // Vérifie si la carte existe déjà dans `tabuser` ou `newCards`
+        // Vérifie si la carte  est pas déja afficher
         const existInTabuser = tabuser.some(
           (carte: any) =>
             carte.famille_aleatoire === newcarte.famille_aleatoire &&
             carte.valeur_aleatoire === newcarte.valeur_aleatoire
         );
 
+        /*verif si la carte a pas déja étais generé avec la fonction genere_datacard()*/
         const existInNewCards = newCards.some(
           (carte: any) =>
             carte.famille_aleatoire === newcarte.famille_aleatoire &&
             carte.valeur_aleatoire === newcarte.valeur_aleatoire
         );
 
-        if (!existInTabuser && !existInNewCards) {
+        /*verifi si la carte a pas déja sortir dans les tour précedant */
+        const existInTabcreate = tabcreate.some(
+          (carte: any) =>
+            carte.famille_aleatoire === newcarte.famille_aleatoire &&
+            carte.valeur_aleatoire === newcarte.valeur_aleatoire
+        );
+
+        if (!existInTabuser && !existInNewCards && !existInTabcreate) {
           newCards.push(newcarte);
         }
       }
@@ -53,10 +62,15 @@ function Page() {
     }
   }
 
+
+  useEffect(() => {
+     next()
+  },[tabuser]);
+
   return (
     <PageLayout>
       <input type="button" value="Suivant" onClick={next} />
-      <p>The Card Game (Tour {nbtour})</p>
+     
       <div className="box_card">
         {tabuser.map((carte: any, index: number) => (
           <Carte
