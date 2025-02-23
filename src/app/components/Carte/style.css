@@ -1,6 +1,6 @@
 .Card {
-    width: 200px;  /* Ajuste la taille des cartes */
-    height: 300px;
+  width: 12vw;
+  height: 23vh;
     border-radius: 10px;
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -70,7 +70,7 @@
 
 
   .div_img_card {
-    width: 60px; /* Ajuster la taille des images */
+    width: 32%; /* Ajuster la taille des images */
     height: 100%s;
   }
   
@@ -94,14 +94,15 @@
   .bottom-right {
     bottom: 5px;
     right: 5px;
-    left: 91%;
+    left: 86%;
   
   }
 
   .One_image_card{
 
     position: relative;
-    top: 19%;
+    top: 29%;
+    left: 27%
 
   }
 
@@ -114,12 +115,12 @@
 
   .img_icone_bottom{
 
-    width: 100%;
+    width: 1vw;
 
   }
   
   .img_card_figure{
 
-    width: 91%;
+    width: 51%;
 
   }

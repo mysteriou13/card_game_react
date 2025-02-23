@@ -1,4 +1,30 @@
 .box_card{
     display: flex;
-    
+    position: relative;
+    top: 19vh;;
+}
+
+.tabcommun{
+
+    display: grid;
+    grid-template-columns: repeat(5, 0fr);
+    grid-gap: 9vw;
+    position: relative;
+    top: 7%;
+
+}
+
+.div_img_back{
+    width: 15vw;
+    height: 20vh;
+}
+
+.img_back{
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+}
+
+.box_commun{
+display: flex;
 }

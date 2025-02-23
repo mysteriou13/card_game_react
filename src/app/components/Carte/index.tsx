@@ -14,7 +14,7 @@ composant carte
 */
 export default function Carte({ data }: CarteProps) {
   // Conversion de la valeur en nombre pour déterminer le nombre d'images
-  let nombreImages = parseInt(data.valeur_aleatoire); // Convertir en nombre
+  let nombreImages = 2; // Convertir en nombre
   // Créer un tableau avec le nombre d'images
   let imagesArray = Array.from({ length: nombreImages }, () => data.img);
 
@@ -96,12 +96,12 @@ export default function Carte({ data }: CarteProps) {
 
       {/* Affichage de la valeur en bas à droite */}
       <div className="bottom-right">
-        <p>
+        <div>
         {data.valeur_aleatoire}
-        </p>
-        <p>
+        </div>
+        <div>
         <img src = {data.icone_carte} className="img_icone_bottom"/>
-        </p>
+        </div>
         </div>
 
     </div>
