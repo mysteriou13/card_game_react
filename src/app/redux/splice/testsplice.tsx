@@ -71,7 +71,7 @@ export const testSlice = createSlice({
 
                 }
 
-                if(a >= 4){
+                if(a >= 2 && a<=6){
 
                     mainCommun.push(newTabCreate[a])
                 }
@@ -86,8 +86,6 @@ export const testSlice = createSlice({
             state.tabmaincommun = mainCommun;
             state.tabaffichecommun = mainCommun.slice(0,3); 
             state.tabcompteur = maincomputeur;
-
-            console.log(newTabCreate, "state maincomputeur",maincomputeur);
         },
 
         /*tour de jeu*/
