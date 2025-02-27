@@ -1,21 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-/* Interface de la carte */
-interface Carte {
-    famille_aleatoire: string;
-    valeur_aleatoire: string;
-    icone_carte: string;
-    img: string;
-}
+import { CarteType } from "../../interface";
 
 /* Définition du type pour l'état initial */
 interface TestState {
-    tabuser: Carte[];
-    tabcompteur: Carte[];
-    tabcreate: Carte[];
-    tabmaincommun: Carte[];
-    tabaffichecommun: Carte[];
-    nbcartetour:number;
+    tabuser: CarteType[];
+    tabcompteur: CarteType[];
+    tabcreate: CarteType[];
+    tabmaincommun: CarteType[];
+    tabaffichecommun: CarteType[];
+    nbCarteTypetour:number;
  
 }
 
@@ -26,9 +20,7 @@ const initialState: TestState = {
     tabmaincommun: [],
     tabcompteur: [],
     tabaffichecommun: [],
-    nbcartetour : 2,
-  
-
+    nbCarteTypetour : 2,
 };
 
 /* Création du slice Redux */
@@ -36,13 +28,13 @@ export const testSlice = createSlice({
     name: "test",
     initialState,
     reducers: {
-        addMultipleItems: (state, action: PayloadAction<Carte[]>) => {
-            // Remplace complètement tabuser par les nouvelles cartes
+        addMultipleItems: (state, action: PayloadAction<CarteType[]>) => {
+            // Remplace complètement tabuser par les nouvelles CarteTypes
             const newTabuser = [...action.payload];
 
             state.tabcreate = [...state.tabcreate, ...newTabuser];
 
-            // Créer un tableau pour stocker les cartes uniques
+            // Créer un tableau pour stocker les CarteTypes uniques
             let newTabCreate = [...action.payload];
 
             newTabuser.forEach((newCard) => {
@@ -59,10 +51,10 @@ export const testSlice = createSlice({
             });
 
 
-             /*distribution des carte*/
-              let mainUser:Carte[]=[];
-              let mainCommun:Carte[]=[];
-              let maincomputeur:Carte[]=[];
+             /*distribution des CarteType*/
+              let mainUser:CarteType[]=[];
+              let mainCommun:CarteType[]=[];
+              let maincomputeur:CarteType[]=[];
 
             for(let a:number = 0;  a !== newTabCreate.length; a++){
 
@@ -81,18 +73,19 @@ export const testSlice = createSlice({
                 }
             }
              
-            //  affichage des carte
+            //  affichage des CarteType
             state.tabuser = mainUser;
             state.tabmaincommun = mainCommun;
             state.tabaffichecommun = mainCommun.slice(0,3); 
             state.tabcompteur = maincomputeur;
+
         },
 
         /*tour de jeu*/
         nexttour: (state) => {
-            state.nbcartetour++;
+            state.nbCarteTypetour++;
             if(state.tabaffichecommun.length !== 5){
-            state.tabaffichecommun.push(state.tabmaincommun[state.nbcartetour]); 
+            state.tabaffichecommun.push(state.tabmaincommun[state.nbCarteTypetour]); 
             }
         }
     },

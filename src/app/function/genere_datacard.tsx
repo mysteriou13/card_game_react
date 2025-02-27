@@ -1,10 +1,4 @@
-    export interface CarteType {
-    famille_aleatoire: string;
-    valeur_aleatoire: string;
-    icone_carte:string;
-    datacarte:any;
-    img: string;
-  }
+import { CarteType } from "../interface";
   
   export default function genere_datacard(): CarteType {
     let familles: string[] = ["pique", "trefle", "carreau", "coeur"];

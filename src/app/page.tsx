@@ -1,6 +1,7 @@
 'use client';
 import React, { useState,useEffect } from "react";
 import { Provider, useDispatch, useSelector } from 'react-redux';
+import { rule } from "./function/rule";
 import { store } from './redux/store';
 import PageLayout from "./components/Layouts/pageLayout";
 import Carte from "./components/Carte";
@@ -33,7 +34,7 @@ function Nbtour(){
 }
 
 /*fonction changement de carte*/
-  function next() {
+  function loadcarte() {
   
     // Vérifie qu'on n'a pas atteint 51 cartes
     if (tabcreate.length !== 51) {
@@ -83,15 +84,23 @@ function Nbtour(){
     }else{
 
     }
+
+    let main = [
+      { famille_aleatoire: "pique", valeur_aleatoire: "3", },
+      { famille_aleatoire: "pique", valeur_aleatoire: "3", },
+      { famille_aleatoire: "pique", valeur_aleatoire: "3" },
+      { famille_aleatoire: "pique", valeur_aleatoire: "6", },
+      { famille_aleatoire: "coeur", valeur_aleatoire: "6",  },
+ 
+  ];
+
+    console.log(rule(main))
   }
 
 
 
- 
-
-
   useEffect(() => {
-    next();
+    loadcarte();
   }, []); 
 
   return (
