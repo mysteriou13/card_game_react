@@ -1,7 +1,8 @@
 'use client';
 import React, { useState,useEffect } from "react";
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { rule } from "./function/rule";
+import { Count_point } from "./function/Count_point";
+import { testMainCard }  from "./test/testMainCard";
 import { store } from './redux/store';
 import PageLayout from "./components/Layouts/pageLayout";
 import Carte from "./components/Carte";
@@ -85,16 +86,7 @@ function Nbtour(){
 
     }
 
-    let main = [
-      { famille_aleatoire: "pique", valeur_aleatoire: "3", },
-      { famille_aleatoire: "pique", valeur_aleatoire: "3", },
-      { famille_aleatoire: "pique", valeur_aleatoire: "3" },
-      { famille_aleatoire: "pique", valeur_aleatoire: "6", },
-      { famille_aleatoire: "coeur", valeur_aleatoire: "6",  },
- 
-  ];
 
-    console.log(rule(main))
   }
 
 
